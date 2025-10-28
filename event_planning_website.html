@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventMasters | Professional Event Planning</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e63946;
+        }
+        
+        .logo span {
+            color: #333;
+        }
+        
+        .logo-tagline {
+            font-size: 11px;
+            font-weight: 400;
+            color: #666;
+            display: block;
+            margin-top: -5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e63946;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1400/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e63946;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #d62839;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-heading h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-heading h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #e63946;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-content {
+            padding: 30px;
+        }
+        
+        .service-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        
+        .gallery-item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            color: #fff;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-item-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .client-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .client-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .client-details h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .client-details p {
+            font-size: 14px;
+            color: #777;
+        }
+        
+        /* Call to Action */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1400/600') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #e63946;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #e63946;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e63946;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-heading h2 {
+                font-size: 30px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                Event<span>Masters</span>
+                <span class="logo-tagline">Your One-Stop Event Solutions</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Every Event. Every Detail. Effortlessly Done.</h1>
+            <p>From corporate gatherings to dream weddings, international travels to intimate celebrations - we handle everything under one roof</p>
+            <a href="#contact" class="btn">Plan Your Event</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Complete Event Solutions</h2>
+                <p>Everything you need for any event - all in one place</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-content">
+                        <h3>Corporate Events</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Team Building & Outings</li>
+                            <li>✓ Annual Day Celebrations</li>
+                            <li>✓ Product Launches</li>
+                            <li>✓ Corporate Conferences & Seminars</li>
+                            <li>✓ Award Ceremonies</li>
+                            <li>✓ Off-site Team Retreats</li>
+                            <li>✓ Employee Engagement Activities</li>
+                            <li>✓ Dealer/Vendor Meets</li>
+                            <li>✓ Corporate Picnics</li>
+                            <li>✓ Town Hall Meetings</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-content">
+                        <h3>Dream Weddings</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Traditional South Indian Weddings</li>
+                            <li>✓ North Indian Big Fat Weddings</li>
+                            <li>✓ Destination Weddings</li>
+                            <li>✓ Beach Weddings</li>
+                            <li>✓ Palace/Heritage Weddings</li>
+                            <li>✓ Garden & Outdoor Weddings</li>
+                            <li>✓ Pre-Wedding Functions (Sangeet, Mehendi, Haldi)</li>
+                            <li>✓ Reception Ceremonies</li>
+                            <li>✓ Intimate Family Weddings</li>
+                            <li>✓ Themed Wedding Celebrations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-content">
+                        <h3>International Travel Packages</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Mediterranean Cruise Tours</li>
+                            <li>✓ Caribbean Cruise Getaways</li>
+                            <li>✓ European River Cruises</li>
+                            <li>✓ Dubai & UAE Tours</li>
+                            <li>✓ Singapore & Malaysia Packages</li>
+                            <li>✓ Thailand & Bali Adventures</li>
+                            <li>✓ Maldives Luxury Escapes</li>
+                            <li>✓ Europe Multi-Country Tours</li>
+                            <li>✓ Australia & New Zealand Trips</li>
+                            <li>✓ USA & Canada Explorations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-content">
+                        <h3>Celebrations & Parties</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Birthday Parties (Kids & Adults)</li>
+                            <li>✓ Anniversary Celebrations</li>
+                            <li>✓ Baby Showers & Naming Ceremonies</li>
+                            <li>✓ House Warming Parties</li>
+                            <li>✓ Retirement Celebrations</li>
+                            <li>✓ Graduation Parties</li>
+                            <li>✓ Small House Parties with Catering</li>
+                            <li>✓ Engagement Ceremonies</li>
+                            <li>✓ Festival Celebrations</li>
+                            <li>✓ Family Reunions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-content">
+                        <h3>Venue & Catering Services</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Venue Selection & Booking</li>
+                            <li>✓ Farmhouse Venues</li>
+                            <li>✓ Banquet Hall Bookings</li>
+                            <li>✓ Resort & Hotel Arrangements</li>
+                            <li>✓ In-Home Catering Services</li>
+                            <li>✓ Multi-Cuisine Catering</li>
+                            <li>✓ Traditional South Indian Catering</li>
+                            <li>✓ North Indian Catering</li>
+                            <li>✓ BBQ & Live Counters</li>
+                            <li>✓ Bartending Services</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Event Gallery</h2>
+                <p>A glimpse of the unforgettable moments we've helped create</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background-image: url('/api/placeholder/400/300');">
+                    <div class="gallery-item-info">
+                        <h3>Annual Corporate Retreat</h3>
+                        <p>Team building and strategy planning in a luxury resort</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('/api/placeholder/400/300');">
+                    <div class="gallery-item-info">
+                        <h3>Beachside Wedding</h3>
+                        <p>A romantic sunset ceremony for 150 guests</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('/api/placeholder/400/300');">
+                    <div class="gallery-item-info">
+                        <h3>Product Launch Gala</h3>
+                        <p>An elegant evening introducing a revolutionary product</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('/api/placeholder/400/300');">
+                    <div class="gallery-item-info">
+                        <h3>Charity Fundraiser</h3>
+                        <p>An inspiring event that raised over $200,000</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('/api/placeholder/400/300');">
+                    <div class="gallery-item-info">
+                        <h3>25th Anniversary Party</h3>
+                        <p>A silver celebration with friends and family</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background-image: url('/api/placeholder/400/300');">
+                    <div class="gallery-item-info">
+                        <h3>Executive Retreat</h3>
+                        <p>Strategic planning in a mountain lodge setting</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Client Testimonials</h2>
+                <p>What our clients say about their experience with us</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"EventMasters transformed our corporate retreat into an unforgettable experience. Their attention to detail and professional approach exceeded our expectations. Every team member is still talking about it!"</p>
+                    <div class="client-info">
+                        <div class="client-img">
+                            <img src="/api/placeholder/60/60" alt="Client">
+                        </div>
+                        <div class="client-details">
+                            <h4>Sarah Johnson</h4>
+                            <p>HR Director, Tech Innovations Inc.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Plan Your Event?</h2>
+            <p>Whether it's a corporate summit, your dream wedding, an international getaway, or an intimate celebration - we've got you covered. One call, unlimited solutions.</p>
+            <a href="#contact" class="btn">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Get In Touch</h2>
+                <p>Fill out the form below and we'll get back to you within 24 hours</p>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Your Phone">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" required>
+                            <option value="" disabled selected>Event Type</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="birthday">Birthday Party</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Tell us about your event" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>EventMasters</h3>
+                    <p>Your complete one-stop solution for all events. From planning to execution, venues to catering, local celebrations to international travels - we do it all.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Corporate Events</a></li>
+                        <li><a href="#">Weddings</a></li>
+                        <li><a href="#">Birthday Parties</a></li>
+                        <li><a href="#">Award Ceremonies</a></li>
+                        <li><a href="#">Product Launches</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>123 Event Street, Suite 100</li>
+                        <li>Phone: (555) 123-4567</li>
+                        <li>Email: info@eventmasters.com</li>
+                        <li>Hours: Mon-Fri 9am-6pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 EventMasters. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
